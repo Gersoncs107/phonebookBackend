@@ -36,7 +36,7 @@ app.get('/info', (request, response) => {
     response.send(`
         <div>
             <h2>Phonebook has info for ${persons.length} people</h2>
-            <p>${Date.now()}</p>
+            <p>${new Date()}</p>
         </div>
         `)
 })
