@@ -60,10 +60,16 @@ app.get('/info', (request, response) => {
 app.post('/api/persons', (request, response) => {
     const body = request.body
 
-    if(!body.content){
+    if(!body.name){
         return response.status(404).json({
             error:'content missing'
         })
+    }
+
+    const person = {
+        id: generateId(),
+        name: body.name,
+        number: body.number
     }
 })
 
