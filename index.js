@@ -71,6 +71,9 @@ app.post('/api/persons', (request, response) => {
         name: body.name,
         number: body.number
     }
+
+    persons = persons.concat(person)
+    response.json(person)
 })
 
 app.delete('/api/persons/:id', (request, response) => {
