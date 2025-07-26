@@ -25,7 +25,8 @@ let persons = [
 ]
 
 const generateId = () => {
-    
+     const newId = Math.floor(Math.random() * 1_000_000_000);
+    return newId
 }
 
 app.get('/', (request, response) => {
