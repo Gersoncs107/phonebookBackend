@@ -63,7 +63,7 @@ app.post('/api/persons', (request, response) => {
     const body = request.body
     const existingPerson = persons.find(person => person.name.toLowerCase() === body.name.toLowerCase());
 
-    if(!body.name || !body.number){
+    if(!body.name || !body.number || existingPerson){
         return response.status(404).json({
             error:'content missing'
         })
