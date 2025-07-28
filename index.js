@@ -26,6 +26,7 @@ let persons = [
 ]
 
 app.use(express.json())
+app.use(requestLogger)
 
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method)
@@ -106,6 +107,10 @@ app.delete('/api/persons/:id', (request, response) => {
 
     response.status(204).end()
 })
+
+const unknownEndpoint = () => {
+    
+}
 
 const PORT = 3001
 app.listen(PORT, () => {
