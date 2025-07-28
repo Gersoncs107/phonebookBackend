@@ -63,9 +63,21 @@ app.post('/api/persons', (request, response) => {
     const body = request.body
     const existingPerson = persons.find(person => person.name.toLowerCase() === body.name.toLowerCase());
 
-    if(!body.name || !body.number || existingPerson){
+    if(!body.name){
         return response.status(404).json({
-            error:'content missing'
+            error:'Name missing'
+        })
+    }
+
+    if(!body.number){
+        return response.status(404).json({
+            error: 'Number missing'
+        })
+    }
+
+    if(existingPerson){
+        return response.status(404).json({
+            error: 'Contact already added '
         })
     }
 
