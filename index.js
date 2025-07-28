@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 
-app.use(express.json())
 
 let persons = [
     { 
@@ -25,6 +24,16 @@ let persons = [
       "number": "39-23-6423122"
     }
 ]
+
+app.use(express.json())
+
+const requestLogger = (request, response, next) => {
+  console.log('Method:', request.method)
+  console.log('Path:  ', request.path)
+  console.log('Body:  ', request.body)
+  console.log('---')
+  next()
+}
 
 const generateId = () => {
      const newId = Math.floor(Math.random() * 1_000_000_000);
