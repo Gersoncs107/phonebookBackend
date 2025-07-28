@@ -25,9 +25,6 @@ let persons = [
     }
 ]
 
-app.use(express.json())
-app.use(requestLogger)
-
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method)
   console.log('Path:  ', request.path)
@@ -35,6 +32,10 @@ const requestLogger = (request, response, next) => {
   console.log('---')
   next()
 }
+
+
+app.use(express.json())
+app.use(requestLogger)
 
 const generateId = () => {
      const newId = Math.floor(Math.random() * 1_000_000_000);
@@ -111,6 +112,8 @@ app.delete('/api/persons/:id', (request, response) => {
 const unknownEndpoint = ((request, response) => {
     response.status(404).send({error: 'Unknown Endpoint'})
 })
+
+app.use(unknownEndpoint)
 
 const PORT = 3001
 app.listen(PORT, () => {
