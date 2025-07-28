@@ -108,9 +108,9 @@ app.delete('/api/persons/:id', (request, response) => {
     response.status(204).end()
 })
 
-const unknownEndpoint = () => {
-    
-}
+const unknownEndpoint = ((request, response) => {
+    response.status(404).send({error: 'Unknown Endpoint'})
+})
 
 const PORT = 3001
 app.listen(PORT, () => {
