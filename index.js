@@ -36,6 +36,7 @@ const requestLogger = (request, response, next) => {
 
 
 app.use(express.json())
+app.use(morgan('tiny'))
 app.use(requestLogger)
 
 const generateId = () => {
