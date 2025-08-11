@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
+const cors = require('cors')
 
 morgan.token('body', (req) => {
     return req.method === 'POST' ? JSON.stringify(req.body) : ''
@@ -41,6 +42,7 @@ const requestLogger = (request, response, next) => {
 app.use(express.json())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 app.use(requestLogger)
+app.use(cors())
 
 const generateId = () => {
      const newId = Math.floor(Math.random() * 1_000_000_000);
