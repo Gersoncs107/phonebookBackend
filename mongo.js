@@ -13,12 +13,12 @@ const url =
 mongoose.set('strictQuery',false)
 mongoose.connect(url)
 
-const noteSchema = new mongoose.Schema({
-  content: String,
-  important: Boolean,
+const personSchema = new mongoose.Schema({
+  name: String,
+  number: Number,
 })
 
-const Note = mongoose.model('Note', noteSchema)
+const Person = mongoose.model('Note', noteSchema)
 
 const note = new Note({
   content: 'HTML is Easy',
