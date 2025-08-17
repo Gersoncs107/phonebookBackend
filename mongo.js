@@ -18,14 +18,14 @@ const personSchema = new mongoose.Schema({
   number: Number,
 })
 
-const Person = mongoose.model('Note', noteSchema)
+const Person = mongoose.model('Person', personSchema)
 
-const note = new Note({
-  content: 'HTML is Easy',
-  important: true,
+const contact = new Person({
+  name: 'Anna',
+  number: '040-1234556',
 })
 
-note.save().then(result => {
-  console.log('note saved!')
+contact.save().then(result => {
+  console.log('contact saved!')
   mongoose.connection.close()
 })
