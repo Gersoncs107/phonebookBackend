@@ -1,5 +1,6 @@
 // mongo.js
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 if (process.argv.length < 3) {
   console.log('give password as argument')
