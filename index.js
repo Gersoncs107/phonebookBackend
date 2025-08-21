@@ -31,6 +31,18 @@ let persons = [
     }
 ]
 
+const url = `mongodb+srv://gersonsilva107:${password}@cluster0.7t4jnco.mongodb.net/phonebookApp?retryWrites=true&w=majority&appName=Cluster0`
+
+mongoose.set('strictQuery',false)
+mongoose.connect(url)
+
+const personSchema = new mongoose.Schema({
+  name: String,
+  number: String, 
+})
+
+const Person = mongoose.model('Person', personSchema)
+
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method)
   console.log('Path:  ', request.path)
