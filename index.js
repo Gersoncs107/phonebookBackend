@@ -85,10 +85,10 @@ app.post('/api/persons', (request, response) => {
         })
     }
 
-    const person = {
+    const person = new Person({
         name: body.name,
         number: body.number
-    }
+    })
 
     persons = persons.concat(person)
     response.json(person)
