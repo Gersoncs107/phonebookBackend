@@ -10,12 +10,6 @@ morgan.token('body', (req) => {
     return req.method === 'POST' ? JSON.stringify(req.body) : ''
 })
 
-
-const password = process.env.MONGO_PWD
-const url = process.env.MONGODB_URI
-
-const Person = mongoose.model('Person', personSchema)
-
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method)
   console.log('Path:  ', request.path)
@@ -23,7 +17,6 @@ const requestLogger = (request, response, next) => {
   console.log('---')
   next()
 }
-
 
 app.use(express.json())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
