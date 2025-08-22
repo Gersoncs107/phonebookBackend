@@ -1,4 +1,5 @@
 require('dotenv').config()
+const Person = require('./models/person')
 const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
@@ -11,23 +12,7 @@ morgan.token('body', (req) => {
 
 
 const password = process.env.MONGO_PWD
-const url = `mongodb+srv://gersonsilva107:${password}@cluster0.7t4jnco.mongodb.net/phonebookApp?retryWrites=true&w=majority&appName=Cluster0`
-
-mongoose.set('strictQuery',false)
-mongoose.connect(url)
-
-const personSchema = new mongoose.Schema({
-  name: String,
-  number: String, 
-})
-
-personSchema.set('toJSON', {
-    transform: (document, returnedObject) => {
-        returnedObject.id = returnedObject._id.toString()
-        delete returnedObject._id
-        delete returnedObject.__v
-    }
-})
+const url = process.env.MONGODB_URI
 
 const Person = mongoose.model('Person', personSchema)
 
