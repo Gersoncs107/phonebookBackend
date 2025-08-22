@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const app = express()
 const cors = require('cors')
-const person = require('./models/person')
 
 morgan.token('body', (req) => {
     return req.method === 'POST' ? JSON.stringify(req.body) : ''
@@ -24,11 +23,6 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms :b
 app.use(requestLogger)
 app.use(cors())
 app.use(express.static('dist'))
-
-const generateId = () => {
-     const newId = Math.floor(Math.random() * 1_000_000_000);
-    return newId
-}
 
 app.get('/', (request, response) => {
     response.send('<h1>Hello Persons!</h1>')
@@ -57,11 +51,11 @@ app.get('/info', (request, response) => {
 
 app.post('/api/persons', (request, response) => {
     const body = request.body
-    const existingPerson = persons.find(person => person.name.toLowerCase() === body.name.toLowerCase());
+    // const existingPerson = person.find(person => person.name.toLowerCase() === body.name.toLowerCase());
 
-    if(body.content === undefined){
-        return response.status(400).json({ error: 'content missing' })
-    }
+    // if(body.content === undefined){
+    //     return response.status(400).json({ error: 'content missing' })
+    // }
 
     if(!body.name){
         return response.status(404).json({
@@ -75,11 +69,11 @@ app.post('/api/persons', (request, response) => {
         })
     }
 
-    if(existingPerson){
-        return response.status(404).json({
-            error: 'Contact already added '
-        })
-    }
+    // if(existingPerson){
+    //     return response.status(404).json({
+    //         error: 'Contact already added '
+    //     })
+    // }
 
     const person = new Person({
         name: body.name,
