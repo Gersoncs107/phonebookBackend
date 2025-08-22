@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const app = express()
 const cors = require('cors')
+const person = require('./models/person')
 
 morgan.token('body', (req) => {
     return req.method === 'POST' ? JSON.stringify(req.body) : ''
@@ -40,14 +41,9 @@ app.get('/api/persons', (request, response) => {
 })
 
 app.get('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id)
-    const person = persons.find(person => person.id === id)
-
-    if(person){
-        response.json(person)
-    } else{
-        response.status(404).end()
-    }
+  Person.findById(request.params.id).then(person => {
+    response.json(person)
+  })
 })
 
 app.get('/info', (request, response) => {
@@ -90,8 +86,9 @@ app.post('/api/persons', (request, response) => {
         number: body.number
     })
 
-    persons = persons.concat(person)
-    response.json(person)
+    person.save().then(savedPerson => {
+        response.json(savedPerson)
+    })
 })
 
 app.delete('/api/persons/:id', (request, response) => {
