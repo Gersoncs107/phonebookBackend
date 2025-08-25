@@ -43,6 +43,10 @@ app.get('/api/persons/:id', (request, response) => {
         response.status(404).end()
     }
   })
+  .catch(error => {
+    console.log(error)
+    response.status(500).end()
+  })
 })
 
 app.get('/info', (request, response) => {
