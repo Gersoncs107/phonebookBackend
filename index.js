@@ -43,10 +43,7 @@ app.get('/api/persons/:id', (request, response, next) => {
         response.status(404).end()
     }
   })
-  .catch(error => {
-    console.log(error)
-    response.status(400).send({error: 'malformatted id'})
-  })
+  .catch(error => next(error))
 })
 
 app.get('/info', (request, response) => {
