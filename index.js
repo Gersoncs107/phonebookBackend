@@ -103,8 +103,6 @@ const unknownEndpoint = ((request, response) => {
     response.status(404).send({error: 'Unknown Endpoint'})
 })
 
-app.use(unknownEndpoint)
-
 const errorHandler = (error, request, response, next) => {
   console.error(error.message)
 
@@ -117,6 +115,7 @@ const errorHandler = (error, request, response, next) => {
   next(error)
 }
 
+app.use(unknownEndpoint)
 app.use(errorHandler)
 
 const PORT = process.env.PORT
