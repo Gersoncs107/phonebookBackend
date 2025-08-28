@@ -99,6 +99,12 @@ app.put('/api/persons/:id', (request, response, next) => {
         number: body.number
     })
 
+    Person.findByIdAndUpdate(request.params.id, person, {new: true})
+    .then(updatedNote => {
+        response.json(updatedNote)
+    })
+    .catch(error => next(error))
+
 })
 
 app.delete('/api/persons/:id', (request, response, next) => {
