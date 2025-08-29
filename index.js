@@ -48,7 +48,7 @@ app.get('/api/persons/:id', (request, response, next) => {
 
 app.get('/info', (request, response) => {
     Person.countDocuments({}).then(count => {
-        res.send(`
+        response.send(`
             <div>
                 <h2>Phonebook has info for ${count} people</h2>
                 <p>${new Date()}</p>
