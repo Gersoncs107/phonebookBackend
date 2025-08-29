@@ -76,9 +76,16 @@ app.post('/api/persons', (request, response) => {
     }
 
     if(existingPerson){
-        return response.status(404).json({
-            error: 'Contact already added '
-        })
+        const { name, number } = request.body
+        return Person.findByIdAndUpdate(
+        request.params.id,
+        { number },
+        { new: true, runValidators: true, context: 'query' }
+    )
+    .then(updatedPerson => {
+        response.json(updatedPerson)
+    })
+    .catch(error => next(error))
     }
 
     const person = new Person({
