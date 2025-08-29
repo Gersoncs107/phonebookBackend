@@ -57,7 +57,7 @@ app.get('/info', (request, response) => {
 
 app.post('/api/persons', (request, response) => {
     const body = request.body
-    // const existingPerson = person.find(person => person.name.toLowerCase() === body.name.toLowerCase());
+    const existingPerson = person.find(person => person.name.toLowerCase() === body.name.toLowerCase());
 
     // if(body.content === undefined){
     //     return response.status(400).json({ error: 'content missing' })
