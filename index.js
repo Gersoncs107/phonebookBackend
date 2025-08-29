@@ -75,11 +75,11 @@ app.post('/api/persons', (request, response) => {
         })
     }
 
-    // if(existingPerson){
-    //     return response.status(404).json({
-    //         error: 'Contact already added '
-    //     })
-    // }
+    if(existingPerson){
+        return response.status(404).json({
+            error: 'Contact already added '
+        })
+    }
 
     const person = new Person({
         name: body.name,
