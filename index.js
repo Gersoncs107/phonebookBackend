@@ -46,7 +46,7 @@ app.get('/api/persons/:id', (request, response, next) => {
   .catch(error => next(error))
 })
 
-app.get('/info', (req, res) => {
+app.get('/info', (request, response) => {
     Person.countDocuments({}).then(count => {
         res.send(`
             <div>
